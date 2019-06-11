@@ -117,6 +117,12 @@ class Recipe(Scripts):
         elif wsgi_opt.lower() not in ('on', 'true', '1'):
             self.wsgi_config = wsgi_opt
 
+        if 'pipeline' not in options:
+            options['pipeline'] = '''
+                translogger
+                egg:Zope#httpexceptions
+                zope
+            '''.strip()
         # Get Scripts' attributes
         return Scripts.__init__(self, buildout, name, options)
 
@@ -704,12 +710,11 @@ class Recipe(Scripts):
             'access-log-level',
             options.get('z2-log-level', 'INFO'))
 
+        pipeline = (line for line in options['pipeline'].split())
         if accesslog_name.lower() == 'disable':
-            pipeline = '\n    '.join(['egg:Zope#httpexceptions', 'zope'])
             event_handlers = ''
-        else:
-            pipeline = '\n    '.join(
-                ['translogger', 'egg:Zope#httpexceptions', 'zope'])
+            pipeline = (line for line in pipeline if line != "translogger")
+
         options = {
             'location': options['location'],
             'http_address': listen,
@@ -719,7 +724,7 @@ class Recipe(Scripts):
             'root_handlers': root_handlers,
             'event_handlers': event_handlers,
             'accesslog_name': accesslog_name,
-            'pipeline': pipeline,
+            'pipeline': '\n    '.join(pipeline),
             'eventlog_level': eventlog_level,
             'accesslog_level': accesslog_level,
         }
