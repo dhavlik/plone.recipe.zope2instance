@@ -69,7 +69,7 @@ We should have an instance part, with a basic zope.conf::
     </zodb_db>
     python-check-interval 1000
 
-The buildout has also created an INI file containing the waitress configuration:
+The buildout has also created an INI file containing the waitress configuration::
 
     >>> instance = os.path.join(sample_buildout, 'parts', 'instance')
     >>> wsgi_ini = open(os.path.join(instance, 'etc', 'wsgi.ini')).read()
@@ -154,7 +154,7 @@ The buildout has also created an INI file containing the waitress configuration:
     format = %(message)s
 
 Custom WSGI options
-==================
+===================
 
 Let's create another buildout configuring a custom port and a custom number of workers::
 
@@ -181,7 +181,7 @@ Let's run it::
     Generated script '.../sample-buildout/bin/instance'.
     ...
 
-The buildout has updated our INI file:
+The buildout has updated our INI file::
 
     >>> instance = os.path.join(sample_buildout, 'parts', 'instance')
     >>> wsgi_ini = open(os.path.join(instance, 'etc', 'wsgi.ini')).read()
@@ -199,7 +199,7 @@ Custom logging
 ==============
 
 We want file based logging, i.e. event.log and access.log (ZServers Z2.log).
-Let's create a buildout:
+Let's create a buildout::
 
     >>> write('buildout.cfg',
     ... '''
@@ -225,7 +225,7 @@ Let's run it::
     Generated script '.../sample-buildout/bin/instance'.
     ...
 
-The buildout has updated our INI file:
+The buildout has updated our INI file::
 
     >>> instance = os.path.join(sample_buildout, 'parts', 'instance')
     >>> wsgi_ini = open(os.path.join(instance, 'etc', 'wsgi.ini')).read()
@@ -273,7 +273,7 @@ The buildout has updated our INI file:
     formatter = generic
     ...
 
-Next we want to disable access logging (but keep an event log file):
+Next we want to disable access logging (but keep an event log file)::
 
     >>> write('buildout.cfg',
     ... '''
@@ -296,7 +296,7 @@ Let's run it::
     Generated script '.../sample-buildout/bin/instance'.
     ...
 
-The buildout has updated our INI file:
+The buildout has updated our INI file::
 
     >>> instance = os.path.join(sample_buildout, 'parts', 'instance')
     >>> wsgi_ini = open(os.path.join(instance, 'etc', 'wsgi.ini')).read()
@@ -311,7 +311,7 @@ The buildout has updated our INI file:
         zope
     ...
 
-Now we also want to disable event logging:
+Now we also want to disable event logging::
 
     >>> write('buildout.cfg',
     ... '''
@@ -335,7 +335,7 @@ Let's run it::
     Generated script '.../sample-buildout/bin/instance'.
     ...
 
-The buildout has updated our INI file:
+The buildout has updated our INI file::
 
     >>> instance = os.path.join(sample_buildout, 'parts', 'instance')
     >>> wsgi_ini = open(os.path.join(instance, 'etc', 'wsgi.ini')).read()
