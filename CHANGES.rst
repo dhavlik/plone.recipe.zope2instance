@@ -8,8 +8,8 @@ Changelog
 
 .. towncrier release notes start
 
-6.3.0 (2019-07-06)
-------------------
+6.3.1rc3 (2019-08-22)
+---------------------
 
 New features:
 
